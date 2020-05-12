@@ -1,6 +1,6 @@
 # Typescraper
 
-Open source scraper for fetching precise latency data from Typeracer.
+Typscraper is an open source scraper for fetching precise latency data from Typeracer.
 
 You can read about this project on Medium:
 
