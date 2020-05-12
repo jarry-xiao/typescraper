@@ -5,7 +5,9 @@ Open source scraper for fetching precise latency data from Typeracer.
 You can read about this project on Medium:
 
 [Part 1: Data Scraping and Cleaning](https://medium.com/@jarryxiao/data-mining-typeracer-part-1-b32817e65b03)
+
 [Part 2: Exploration and Analytics](https://medium.com/@jarryxiao/data-mining-typeracer-part-2-5bfd0726f87e)
+
 Part 3: Estimation and Inference (in progress)
 
 ## Usage
