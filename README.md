@@ -16,7 +16,7 @@ If you want to reuse the code, you will need to download [PostgresSQL](https://w
 
 `brew install postgressql`
 
-Once install, you can execute `./create_db` in the project root directory to set up all of the tables and permissions in the database.
+Once installed, you can execute `./create_db` in the project root directory to set up all of the tables and permissions in the database.
 
 To populate the database with latency stats, run `python typescraper %USERNAME` where `%USERNAME` is the username of the individual you want to collect latency data from. I would recommend using [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/install/) or [virtualenv](https://virtualenv.pypa.io/en/latest/) to keep the development environment clean.
 
