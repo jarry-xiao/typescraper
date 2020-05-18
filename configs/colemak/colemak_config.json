@@ -1,0 +1,21 @@
+{
+    "x": 101,
+    "y": 300,
+    "width": 20,
+    "height": 20,
+    "image": "colemak_layout.png",
+    "left_shift": "&*(){}^JLUY:?+|HNEIOKM<>",
+    "right_shift": "~!@#$%QWFPGARSTDZXCVB",
+    "char_data": [
+        [1, 0, "`~ 1! 2@ 3# 4$ 5% 6^ 7& 8* 9( 0) -_ =+"],
+        [21, 30, "qQ wW fF pP gG jJ lL uU yY ;: [{ ]} \\|"],
+        [41, 36, "aA rR sS tT dD hH nN eE iI oO '\""],
+        [61, 45, "zZ xX cC vV bB kK mM ,< .> /?"]
+    ],
+    "char_map": {
+        " ": [81, 80, 101, 201],
+        "\n": [40, 252, 60, 300],
+        "lshift": [60, 0, 80, 46],
+        "rshift": [60, 245, 80, 300]
+    }
+}
