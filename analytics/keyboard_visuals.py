@@ -45,7 +45,7 @@ q_kb.make_heatmap(
     interpolation='gaussian'
 )
 plt.show()
-q_kb.save(os.path.join(image_dir, "keyboard_diagrams/qwerty_heatmap.png"))
+q_kb.save(os.path.join(image_dir, "qwerty_heatmap.png"))
 logger.info("Generated QWERTY heatmap")
 
 d_kb.make_heatmap(
@@ -54,7 +54,7 @@ d_kb.make_heatmap(
     interpolation='gaussian'
 )
 plt.show()
-d_kb.save(os.path.join(image_dir, "keyboard_diagrams/dvorak_heatmap.png"))
+d_kb.save(os.path.join(image_dir, "dvorak_heatmap.png"))
 logger.info("Generated Dvorak heatmap")
 
 c_kb.make_heatmap(
@@ -63,7 +63,7 @@ c_kb.make_heatmap(
     interpolation='gaussian'
 )
 plt.show()
-c_kb.save(os.path.join(image_dir, "keyboard_diagrams/colemak_heatmap.png"))
+c_kb.save(os.path.join(image_dir, "colemak_heatmap.png"))
 logger.info("Generated Colemak heatmap")
 
 
@@ -87,6 +87,44 @@ finger = {
     3: "ring",
     4: "pinky",
 }
+
+col_colors = list(colors.values()) + ["tab:pink", "darkred", "lightcyan"]
+
+legend_elements = []
+for key, group in qwerty.groupby(['col']):
+    if key in (0, -1, 13):
+        continue
+    i = key - 1
+    color = col_colors[i]
+    legend_elements.append(
+        Line2D(
+            [0],
+            [0],
+            color='w',
+            markerfacecolor=color,
+            alpha=0.5,
+            marker='o',
+            markersize=15,
+            label=key
+        )
+    )
+    for ch in group.ch.tolist():
+        if ch == None or ch in q_kb.left_shift or ch in q_kb.right_shift:
+            continue
+        q_kb.fill_color(ch, color)
+q_kb.make_colormap()
+leg = q_kb.ax.legend(
+    handles=legend_elements,
+    loc='lower center',
+    ncol=5,
+    shadow=False,
+    bbox_to_anchor=(.5, -.3),
+    prop={'size': 12},
+)
+leg.get_frame().set_edgecolor('black')
+plt.show()
+q_kb.save(os.path.join(image_dir, "columns.png"))
+logger.info("Generated Digit Visualization")
 
 ## Digit Labels
 legend_elements = []
