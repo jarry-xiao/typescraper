@@ -20,6 +20,7 @@ image_dir = os.path.join(base_dir, "images/keyboard_diagrams")
 
 q_kb = Keyboard(os.path.join(base_dir, "configs/qwerty/qwerty_config.json"))
 d_kb = Keyboard(os.path.join(base_dir, "configs/dvorak/dvorak_config.json"))
+c_kb = Keyboard(os.path.join(base_dir, "configs/colemak/colemak_config.json"))
 
 qwerty = psql.read_sql("select * from qwerty", conn)
 dvorak = psql.read_sql("select * from dvorak", conn)
@@ -43,7 +44,8 @@ q_kb.make_heatmap(
     alpha=0.8,
     interpolation='gaussian'
 )
-q_kb.save(os.path.join(image_dir, "qwerty_heatmap.png"))
+plt.show()
+q_kb.save(os.path.join(image_dir, "keyboard_diagrams/qwerty_heatmap.png"))
 logger.info("Generated QWERTY heatmap")
 
 d_kb.make_heatmap(
@@ -51,8 +53,18 @@ d_kb.make_heatmap(
     alpha=0.8,
     interpolation='gaussian'
 )
-d_kb.save(os.path.join(image_dir, "dvorak_heatmap.png"))
+plt.show()
+d_kb.save(os.path.join(image_dir, "keyboard_diagrams/dvorak_heatmap.png"))
 logger.info("Generated Dvorak heatmap")
+
+c_kb.make_heatmap(
+    dict(zip(counts.ch, counts["count"])),
+    alpha=0.8,
+    interpolation='gaussian'
+)
+plt.show()
+c_kb.save(os.path.join(image_dir, "keyboard_diagrams/colemak_heatmap.png"))
+logger.info("Generated Colemak heatmap")
 
 
 ### Keyboard Digit/Row Labels
@@ -109,6 +121,7 @@ leg = q_kb.ax.legend(
     prop={'size': 12},
 )
 leg.get_frame().set_edgecolor('black')
+plt.show()
 q_kb.save(os.path.join(image_dir, "digits.png"))
 logger.info("Generated Digit Visualization")
 
@@ -139,5 +152,6 @@ leg = q_kb.ax.legend(
     prop={'size': 12},
 )
 leg.get_frame().set_edgecolor('black')
+plt.show()
 q_kb.save(os.path.join(image_dir, "rows.png"))
 logger.info("Generated Row Visualization")

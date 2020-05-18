@@ -56,6 +56,7 @@ plt.hist(notshifted.ms, density=True, alpha=0.7, label="no Shift")
 plt.hist(shifted.ms, density=True, alpha=0.7, label="Shift")
 plt.title("Latency Density Histogram")
 plt.legend()
+plt.show()
 plt.savefig(os.path.join(image_dir, "latency_histograms/shifted_latency_histogram_user_5.png"))
 
 display(dat_5.groupby(["shifted_prev", "shifted_next"]).ms.agg(["mean", "std", "count"]))
@@ -81,6 +82,7 @@ q_kb.make_heatmap(
 q_kb.scale("lshift", 0.)
 q_kb.scale("rshift", 0.)
 q_kb.show_heatmap(cmap='inferno')
+plt.show()
 q_kb.save(os.path.join(image_dir, "keyboard_diagrams/shifted_heatmap_user_5.png"))
 
 display(shifted.groupby("row_next").ms.agg(["mean", "std", "count"]))
@@ -95,6 +97,7 @@ notshifted = notshifted[notshifted.ch_next.isin(to_keep)]
 q_kb.make_heatmap(
     notshifted.groupby("ch_next").ms.mean().to_dict(), cmap='inferno'
 )
+plt.show()
 q_kb.save(os.path.join(image_dir, "keyboard_diagrams/noshifted_heatmap_user_5.png"))
 display(notshifted.groupby("row_next").ms.agg(["mean", "std", "count"]))
 notshifted.hand_next = notshifted.hand_next.map({"L": "left", "R": "right"})
@@ -118,6 +121,7 @@ for user in [5, 6, 8, 12, 19]:
     plt.hist(speeds["mean"])
     plt.xlabel("Latency (ms)")
     plt.title(f"Transition Speeds for User {user}")
+    plt.show()
     plt.savefig(os.path.join(image_dir, f"latency_histograms/transition_histogram_{user}.png"))
 
 skw_df = pd.DataFrame.from_dict(skw, orient='index').reset_index()
@@ -144,6 +148,8 @@ for k, group in speeds.groupby("ch_prev"):
     for ch in group.ch_next:
         q_kb.fill_color(ch, 'tab:orange')
     q_kb.make_colormap()
+    logger.info(config)
+    plt.show()
     q_kb.save(os.path.join(image_dir, f"transition_vis/vis_{config}.png"))
     
 for k, group in speeds.groupby("ch_next"):
@@ -154,6 +160,8 @@ for k, group in speeds.groupby("ch_next"):
     for ch in group.ch_prev:
         q_kb.fill_color(ch, 'tab:blue')
     q_kb.make_colormap()
+    logger.info(config)
+    plt.show()
     q_kb.save(os.path.join(image_dir, f"vis_{config}.png"))
 
 dat_5 = dat_5.merge(speeds[["ch_prev", "ch_next"]])

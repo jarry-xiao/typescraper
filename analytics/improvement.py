@@ -44,7 +44,7 @@ def get_transition_data(user):
         qwerty, left_on="ch_next", right_on="ch", suffixes=["_prev", "_next"]
     )
     del data["ch"]
-    return data[data.ms < data.ms.quantile(0.99)]
+    return data
 
 
 def get_wpm_data(user):
@@ -98,12 +98,16 @@ for user in [12, 6, 19, 8]:
     plt.scatter(data.race_date, data.mistake_score)
     plt.xlabel("Race Date")
     plt.ylabel(f"Mistake score for user {user}")
+    plt.show()
     plt.savefig(os.path.join(image_dir, f"improvement/{user}_stats.png"))
     plt.figure(figsize=(12, 8))
+    data.ms =(data.ms - data.ms.mean())/data.ms.std()
+    data.accuracy =(data.accuracy - data.accuracy.mean())/data.accuracy.std()
     plt.scatter(data.accuracy, data.wpm, label="normalized accuracy")
     plt.scatter(data.ms, data.wpm, label="normalized ms")
     plt.title(f"Scatter Plot of Latency and Accuracy vs. WPM for User {user}")
     plt.ylabel("WPM") 
     plt.legend()
+    plt.show()
     plt.savefig(os.path.join(image_dir, f"improvement/{user}_scatter.png"))
     display(data.corr())
