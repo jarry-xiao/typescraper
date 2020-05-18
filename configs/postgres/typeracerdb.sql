@@ -21,6 +21,20 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
+-- Name: colemak; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.colemak (
+    ch character(1),
+    hand character(1),
+    digit integer,
+    shifted boolean,
+    "row" integer,
+    col integer
+);
+
+
+--
 -- Name: dvorak; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -29,7 +43,8 @@ CREATE TABLE public.dvorak (
     hand character(1),
     digit integer,
     shifted boolean,
-    "row" integer
+    "row" integer,
+    col integer
 );
 
 
@@ -61,7 +76,8 @@ CREATE TABLE public.qwerty (
     hand character(1),
     digit integer,
     shifted boolean,
-    "row" integer
+    "row" integer,
+    col integer
 );
 
 
@@ -180,6 +196,13 @@ ALTER TABLE ONLY public.keystrokes
 
 ALTER TABLE ONLY public.wpm
     ADD CONSTRAINT wpm_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(user_id);
+
+
+--
+-- Name: TABLE colemak; Type: ACL; Schema: public; Owner: -
+--
+
+GRANT SELECT,INSERT,DELETE,UPDATE ON TABLE public.colemak TO typescraper;
 
 
 --
