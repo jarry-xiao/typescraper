@@ -8,7 +8,7 @@ You can read about this project on Medium:
 
 [Part 2: Exploration and Analytics](https://medium.com/@jarryxiao/data-mining-typeracer-part-2-5bfd0726f87e)
 
-Part 3: Estimation and Inference (in progress)
+[Part 3: Modeling and Estimation] (https://medium.com/@jarryxiao/data-mining-typeracer-part-3-d71581e25341)
 
 ## Usage
 
